@@ -1,0 +1,41 @@
+CREATE TABLE USERS (
+    userId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    salt VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255)
+);
+
+
+CREATE TABLE NOTE (
+    noteId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    noteTitle VARCHAR(255) NOT NULL,
+    noteDescription TEXT,
+    userId BIGINT,
+    FOREIGN KEY (userId) REFERENCES USERS(userId)
+);
+
+
+CREATE TABLE FILE (
+    fileId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    fileName VARCHAR(255) NOT NULL,
+    contentType VARCHAR(100),
+    fileSize BIGINT,
+    fileData LONGBLOB,
+    fileUploadDateTime DATETIME,
+    userId BIGINT,
+    FOREIGN KEY (userId) REFERENCES USERS(userId)
+);
+
+CREATE TABLE CREDENTIAL (
+    credentialId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(255) NOT NULL,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    decryptedPassword VARCHAR(255),
+    `key` VARCHAR(255), -- `key` is a reserved keyword, so it needs to be enclosed in backticks
+    userId BIGINT,
+    FOREIGN KEY (userId) REFERENCES USERS(userId)
+);
+
