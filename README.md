@@ -25,16 +25,23 @@ This project is about a cloud architecture for a storage system similar to Dropb
 
 ## Detailed Architecture Description
 Web Server VM
-* Purpose: Hosts the web application responsible for handling user interactions, file uploads, downloads, and other functionalities.
-* Configuration: 1) Deployed on a Google Compute Engine instance. 2) Scaled based on incoming traffic using instance groups. 3) Connected to the load balancer to distribute traffic.
+* Purpose: Hosts the web application responsible for handling user interactions, file uploads, downloads, and other functionalities. 
+* Configuration:
+     - Deployed on a Google Compute Engine instance.
+     - Scaled based on incoming traffic using instance groups.
+     - Connected to the load balancer to distribute traffic.
 
 Database Server VM
 + Purpose: Hosts the database that stores all the user data, such as account information, files, and metadata.
-+ Configuraation: 1) Deployed on a Google Compute Engine instance with appropriate storage and performance characteristics. 2) Configured for high availability and backup using mySQL.
+* Configuration:
+     - Deployed on a Google Compute Engine instance with appropriate storage and performance characteristics.
+     - Configured for high availability and backup using mySQL.
 
 Load Balancer
 + Purpose: Ensures that incoming HTTP/HTTPS requests are distributed evenly across multiple web server VMs to improve availability and fault tolerance.
-+ Implementation: 1) Google Cloud Load Balancing: Utilized to distribute traffic across instances. 2) Backend Services: Configured to define how the load balancer routes traffic to the web server instances.
+* Implementation:
+     - Google Cloud Load Balancing: Utilized to distribute traffic across instances.
+     - Backend Services: Configured to define how the load balancer routes traffic to the web server instances.
 
 ### Implementation Steps
 1) Creating Web Server VM Instance
