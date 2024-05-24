@@ -54,7 +54,8 @@ Load Balancer
 ![image](https://github.com/emirasal/CS-436-Project/assets/63263142/ec372ab4-9be2-4a38-9852-5f3a1e2f1f03)
 
 # Stress & Performance Testing
-
+For Stress and Performance Testing "Locust" have been used. Test function logins, uploads a file and downloads another. The example test function is uploaded.
+![a](https://github.com/emirasal/CS-436-Project/assets/127860430/7c9eec35-04e0-4c43-b820-6d99db608b89)
 
 # Summary
 This architecture discovers Google Cloud Platform’s capabilities to create a scalable, reliable, and high-performing storage system. The key components include web server VMs, a database server VM, and a load balancer to distribute traffic and ensure high availability. Proper configuration and setup of these components ensure the system can handle user demands effectively and maintain service continuity.
