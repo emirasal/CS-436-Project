@@ -53,6 +53,7 @@ Load Balancer
 ## Arcitacture Diagram
 ![image](https://github.com/emirasal/CS-436-Project/assets/63263142/ec372ab4-9be2-4a38-9852-5f3a1e2f1f03)
 
+# Stress & Performance Testing
 
 
 # Summary
