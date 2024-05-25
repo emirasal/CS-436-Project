@@ -57,5 +57,26 @@ Load Balancer
 For Stress and Performance Testing "Locust" have been used. Test function logins, uploads a file and downloads another. The example test function is uploaded.
 ![a](https://github.com/emirasal/CS-436-Project/assets/127860430/7c9eec35-04e0-4c43-b820-6d99db608b89)
 
+# Cloud Functions
+To check if the note desctription is longer than 255 chars:
+const functions = require('@google-cloud/functions-framework');
+
+functions.http('helloHttp', (req, res) => {
+  const noteContent = req.query.noteContent || req.body.noteContent;
+  
+  if (!noteContent) {
+    res.status(400).send({ error: "No noteContent provided" });
+    return;
+  }
+
+  if (noteContent.length > 255) {
+    res.status(400).send({ error: "noteContent length exceeds 255 characters" });
+    return;
+  }
+
+  res.status(200).send({ message: "OK" });
+});
+
+
 # Summary
 This architecture discovers Google Cloud Platform’s capabilities to create a scalable, reliable, and high-performing storage system. The key components include web server VMs, a database server VM, and a load balancer to distribute traffic and ensure high availability. Proper configuration and setup of these components ensure the system can handle user demands effectively and maintain service continuity.
