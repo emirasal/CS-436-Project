@@ -25,18 +25,53 @@ public class NoteController {
     public String saveNote(Note note, Model model) {
         Long currentUserId = userService.getCurrentUserId();
 
-        if (currentUserId != null && note != null && note.getNoteId() != null) {
-            int noOfAddedNote = noteService.updateNoteDetails(note, currentUserId);
+        if (currentUserId != null && note != null) {
+            try {
+                // Prepare the JSON payload for the Cloud Function
+                String jsonPayload = "{\"noteContent\":\"" + note.getNoteDescription() + "\"}";
 
-            if (noOfAddedNote == 1) {
-                model.addAttribute("result", "success");
-            }
-        } else if (currentUserId != null && note != null && note.getNoteId() == null) {
-            int noOfAddedNote = noteService.addNoteByUserId(note, currentUserId);
+                // Create HttpHeaders and set the content type to application/json
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
 
-            if (noOfAddedNote == 1) {
-                model.addAttribute("result", "success");
+                // Create HttpEntity with the JSON payload and headers
+                HttpEntity<String> requestEntity = new HttpEntity<>(jsonPayload, headers);
+
+            // Send a request to the Cloud Function
+                ResponseEntity<String> response = new RestTemplate().postForEntity(
+                    "https://us-central1-fabled-emblem-417120.cloudfunctions.net/function-note-lenght-check",
+                    requestEntity,
+                    String.class
+                );
+
+            // Check if the Cloud Function response is successful
+                if (response.getStatusCode().is2xxSuccessful()) {
+                // Proceed with saving the note if the Cloud Function response indicates success
+                    if (note.getNoteId() != null) {
+                        int noOfUpdatedNote = noteService.updateNoteDetails(note, currentUserId);
+                        if (noOfUpdatedNote == 1) {
+                            model.addAttribute("result", "success");
+                        }
+                    } else {
+                        int noOfAddedNote = noteService.addNoteByUserId(note, currentUserId);
+                        if (noOfAddedNote == 1) {
+                            model.addAttribute("result", "success");
+                        }
+                    }
+                } else {
+                // Handle the error response from the Cloud Function
+                    model.addAttribute("result", "error");
+                    model.addAttribute("message", "Failed to save note: Cloud Function returned an error");
+                }
+            } catch (Exception e) {
+            // Handle any exceptions that occur during the request
+                model.addAttribute("result", "error");
+                model.addAttribute("message", "Failed to save note: " + e.getMessage());
             }
+        } else {
+        // Handle scenarios where the currentUserId or note is null
+            model.addAttribute("result", "error");
+            model.addAttribute("message", "Failed to save note: Invalid input data");
         }
         return "result";
     }
