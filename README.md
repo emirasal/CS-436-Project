@@ -2,6 +2,8 @@
 
 Members: Mehmet Emin Er - Mustafa Kepenek - Emir Asal
 
+Video Link: https://drive.google.com/file/d/1E8xIUKN0QN0gT3g3Gtj22drYD1DvDAle/view?usp=sharing
+
 
 # Project Overview 
 
