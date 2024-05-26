@@ -57,6 +57,14 @@ Load Balancer
 For Stress and Performance Testing "Locust" have been used. Test function logins, uploads a file and downloads another. The example test function is uploaded.
 ![a](https://github.com/emirasal/CS-436-Project/assets/127860430/7c9eec35-04e0-4c43-b820-6d99db608b89)
 
+On GCP, E2 machine used in the first tests. However, since it was not powerful enough to cover desired traffic, application moved to N2 machines. According to stress and performance tests, application works fine with high traffic. 
+
+* The test has been done with 100 users
+* 0 failures
+* 16.2 avarage RPS
+* Avarage Response Per Milisecond started over 350 ms and decreased over time
+    * Avarage response time started high since 100 users tried to login at the same time but it kept decreasing over the test
+
 # Cloud Functions
 To check if the note desctription is longer than 255 chars:
 
