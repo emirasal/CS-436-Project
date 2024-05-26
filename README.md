@@ -51,7 +51,8 @@ Load Balancer
 5) Configuring the load balancer
 
 ## Arcitacture Diagram
-![image](https://github.com/emirasal/CS-436-Project/assets/63263142/ec372ab4-9be2-4a38-9852-5f3a1e2f1f03)
+![b](https://github.com/emirasal/CS-436-Project/assets/127860430/1827305c-6a07-4536-91a0-94eb474f10bd)
+
 
 # Stress & Performance Testing
 For Stress and Performance Testing "Locust" have been used. Test function logins, uploads a file and downloads another. The example test function is uploaded.
