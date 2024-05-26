@@ -24,7 +24,7 @@ This project is about a cloud architecture for a storage system similar to Dropb
   + Distributes incoming traffic across multiple web server instances to ensure high availability and reliability.
 
 ## Detailed Architecture Description
-Web Server VM
+2 Identical Web Server VM
 * Purpose: Hosts the web application responsible for handling user interactions, file uploads, downloads, and other functionalities. 
 * Configuration:
      - Deployed on a Google Compute Engine instance.
