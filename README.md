@@ -59,11 +59,15 @@ For Stress and Performance Testing "Locust" have been used. Test function logins
 
 # Cloud Functions
 To check if the note desctription is longer than 255 chars:
+
 const functions = require('@google-cloud/functions-framework');
 
 functions.http('helloHttp', (req, res) => {
-  const noteContent = req.query.noteContent || req.body.noteContent;
+  const requestBody = req.body;
+  console.log('Request Body:', requestBody);
   
+  const noteContent = requestBody.noteContent;
+  console.log('Note Content:', noteContent);
   if (!noteContent) {
     res.status(400).send({ error: "No noteContent provided" });
     return;
@@ -76,6 +80,7 @@ functions.http('helloHttp', (req, res) => {
 
   res.status(200).send({ message: "OK" });
 });
+
 
 
 # Summary
